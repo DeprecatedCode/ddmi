@@ -30,3 +30,9 @@ sudo usermod -a -G docker $(whoami)
 sudo apt-get install -y python-pip python-dev build-essential 
 sudo pip install --upgrade pip 
 sudo pip install docker-py
+
+# Restart the docker daemon
+sudo service docker restart
+
+# logout
+logout
