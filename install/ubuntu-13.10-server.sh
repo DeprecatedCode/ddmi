@@ -34,6 +34,10 @@ sudo pip install docker-py
 # Restart the docker daemon
 sudo service docker restart
 
+# Download an ubuntu image
+sudo docker pull ubuntu
+
 # logout
 echo "Install complete!"
 echo "You should logout before using the docker command in non-root mode."
+echo "Try docker: sudo docker run ubuntu echo 'Hello World'"
