@@ -1,6 +1,9 @@
 # Install ddmi (and docker) on Ubuntu 13.10
 # Author: Nate Ferrero
 
+# Usage:
+# curl https://github.com/NateFerrero/ddmi/blob/master/install-ubuntu-13.10-server.sh | sh
+
 # AUFS filesystem support
 sudo apt-get update
 sudo apt-get install -y linux-image-extra-`uname -r`
