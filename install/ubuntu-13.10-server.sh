@@ -35,4 +35,5 @@ sudo pip install docker-py
 sudo service docker restart
 
 # logout
-logout
+echo "Install complete!"
+echo "You should logout before using the docker command in non-root mode."
