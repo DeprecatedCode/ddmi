@@ -2,7 +2,7 @@
 # Author: Nate Ferrero
 
 # Usage:
-# curl https://raw.github.com/NateFerrero/ddmi/master/install-ubuntu-13.10-server.sh | sh
+# curl https://raw.github.com/NateFerrero/ddmi/master/install/ubuntu-13.10-server.sh | sh
 
 # AUFS filesystem support
 sudo apt-get update
@@ -22,6 +22,9 @@ sudo apt-get update
 
 # install docker
 sudo apt-get install -y lxc-docker
+
+# Add current user to docker group
+sudo usermod -a -G docker $(whoami)
 
 # install docker-py
 sudo apt-get install -y python-pip python-dev build-essential 
