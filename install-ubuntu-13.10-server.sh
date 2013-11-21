@@ -2,7 +2,7 @@
 # Author: Nate Ferrero
 
 # Usage:
-# curl https://github.com/NateFerrero/ddmi/blob/master/install-ubuntu-13.10-server.sh | sh
+# curl https://raw.github.com/NateFerrero/ddmi/master/install-ubuntu-13.10-server.sh | sh
 
 # AUFS filesystem support
 sudo apt-get update
