@@ -1,0 +1,158 @@
+/**
+ * General
+ */
+body {
+    background: url(img/white_wall_hash.png);
+}
+
+a {
+    cursor: pointer;
+    color: #008BB8;
+}
+
+a:hover, a:focus {
+    color: #05C2FF;
+}
+
+.btn > a:hover, .btn > a:focus {
+    color: #fff;
+}
+
+.btn.default > a:hover, .btn.default > a:focus {
+    color: #555;
+}
+
+i[class^="icon-"], i[class*=" icon-"] {
+    margin: 0;
+}
+
+/**
+ * Sublte Shadows
+ */
+div.navbar, .server {
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.10);
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.10);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.10);
+}
+
+/**
+ * Navbar
+ */
+div.navbar {
+    background: #71afc0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.navbar .logo {
+    color: #eee;
+}
+
+.navbar .pull_right {
+    text-align: right;
+}
+
+.navbar ul > li a {
+    color: #eee;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+    line-height: 60px;
+}
+
+.navbar ul > li a:hover {
+    color: #fff;
+    text-shadow: 0 0 4px #ccc;
+}
+
+/**
+ * Note
+ */
+.note {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+/**
+ * Code
+ */
+code {
+    font-family: "Oxygen Mono", monospace;
+    padding: 0.5rem;
+    font-size: 90%;
+}
+
+/**
+ * Server
+ */
+.tiles > li.server {
+    border: 1px solid #ddd;
+    background: #eee;
+    padding: 0.5rem 0.75rem 0.25rem;
+    margin-bottom: 2%;
+}
+
+.server .name {
+    margin: 0;
+}
+
+.server ul.icons {
+    margin: 0;
+}
+
+.server .icons li:before {
+    left: 1px;
+}
+.server .icons li:after {
+    font-size: 80%;
+    left: -5px;
+}
+
+.server .icons li {
+    display: inline-block;
+    padding: 0;
+}
+
+.server .icons p {
+    font-size: 80%;
+    margin: 0;
+    padding: 0.2rem 0 0;
+}
+
+.server .right {
+    float: right;
+}
+
+.server .icons li.resume,
+.server.paused .icons li.pause {
+    display: none;
+}
+
+.server.paused .icons li.resume {
+    display: inline-block;
+}
+
+.server .status, .server .flag {
+    color: #ca3838;
+}
+
+.server.paused .status {
+    color: #f6b83f;
+}
+
+.server.active .status {
+    color: #58c026;
+}
+
+.server .icons .click {
+    cursor: pointer;
+}
+
+/**
+ * Services
+ */
+.server .services li {
+    border: 1px solid #ddd;
+    background: #fdfdfd;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0.5rem 0.75rem;
+    font-size: 80%;
+}

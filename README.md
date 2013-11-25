@@ -39,4 +39,4 @@ Start the service with upstart:
 sudo service ddmi start
 ```
 
-Finally, visit `http://&lt;server-hostname-or-ip&gt;:4244` in your browser.
+Finally, visit `http://<server-hostname-or-ip>:4244` in your browser.

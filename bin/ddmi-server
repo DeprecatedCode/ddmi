@@ -2,4 +2,5 @@
 from ddmi import app
 
 if __name__ == '__main__':
-    app.server.run(host='0.0.0.0', port=4244, debug=True)
+    print "Starting DDMI in Deployed Mode"
+    app.server.run(host='0.0.0.0', port=4244)

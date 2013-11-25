@@ -24,7 +24,9 @@ setup(
             'static/gumby/css/gumby.css',
             'static/angular.min.js',
             'static/ddmi/*',
-            'templates/*'
+            'static/img/*',
+            'static/templates/*',
+            'static/ddmi.css'
         ]
     }
 )

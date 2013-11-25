@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="DDMI">
+    <head>
+        <title>Docker Cloud</title>
+        <script src="static/angular.min.js"></script>
+        <link href="static/gumby/css/gumby.css" type="text/css"
+            rel="stylesheet" />
+        <link href="static/ddmi.css" type="text/css" rel="stylesheet" />
+        <script src="static/ddmi/ddmi.js"></script>
+        <script src="static/ddmi/ddmi.login.js"></script>
+        <script src="static/ddmi/ddmi.servers.js"></script>
+        <link href="http://fonts.googleapis.com/css?family=Oxygen+Mono|Open+Sans:400,700" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="row">
+                <h2 class="six columns logo">Docker Cloud</h2>
+                <ul class="six columns pull_right">
+                    <li>
+                        <a ng-click="view='servers'">Servers</a>
+                    </li>
+                    <li>
+                        <a ng-click="view='containers'">Containers</a>
+                    </li>
+                    <li>
+                        <a ng-click="modals.login = true">Log In</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div ng-if="!view || view === 'servers'"
+            ng-include="'static/templates/servers.html'"></div>
+
+        <div ng-if="view === 'containers"
+            ng-include="'static/templates/containers.html'"></div>
+
+        <div ng-include="'static/templates/loginModal.html'"></div>
+    </body>
+</html>

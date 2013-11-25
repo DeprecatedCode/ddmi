@@ -1,0 +1,45 @@
+<div ng-controller="DDMILoginCtrl" class="modal {{modals.login ? 'active' : ''}}">
+    <div class="content">
+        <a ng-click="modals.login = false" class="close">
+            <i class="icon-cancel"></i>
+        </a>
+        <p class="row">
+            <i class="icon-globe"></i>
+            Distributed Docker Management Interface v{{version}}
+        </p>
+        <h2 class="row">Log In</h2>
+        <ul class="row">
+            <li class="four columns field">
+                <input class="input" type="email" placeholder="Email Address" />
+            </li>
+            <li class="four columns field">
+                <input class="input" type="password" placeholder="Password" />
+            <li class="two columns field">
+                <div class="medium primary btn"><a>Log In</a></div>
+            </li>
+        </ul>
+        <ul class="row">
+            <li class="four columns">
+                <div ng-show="loginState == 'fail'" class="danger alert">
+                    Invalid email address or password
+                </div>
+                <div ng-show="loginState == 'ok'" class="success alert">
+                    You are now logged in
+                </div>
+            </li>
+        </ul>
+        <p class="row note">
+            <i class="icon-info"></i>
+            If you forgot your password, log in via SSH and use the <code>ddmi reset-password</code> command.
+        </p>
+        <h2 class="row">Create Account</h2>
+        <ul class="row">
+            <li class="four columns field">
+                <input class="input" type="email" placeholder="Email Address" />
+            </li>
+            <li class="two columns field">
+                <div class="medium primary btn"><a>Continue</a></div>
+            </li>
+        </ul>
+    </div>
+</div>

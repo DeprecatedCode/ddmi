@@ -1,0 +1,106 @@
+<div class="row" ng-controller="DDMIServersCtrl">
+    <h3>
+        {{servers.length}} Server{{servers.length != 1 ? 's' : ''}}
+        <span ng-click="act('add')">
+            <i class="icon-plus-squared"></i>
+        </span>
+    </h3>
+    <ul class="three_up tiles">
+        <li class="server {{['', 'active', 'paused', 'error', 'active'][server]}}" ng-repeat="server in servers">
+            <ul class="icons">
+                <li class="status">
+                    <i class="icon-cloud-thunder"></i>
+                </li>
+                <li class="right click open" title="Server Details"
+                    ng-click="act('inspect', server)">
+                    <i class="icon-popup"></i>
+                </li>
+                <li class="right flag">
+                    <i class="icon-flag"></i>
+                </li>
+            </ul>
+            <p class="name">Server {{server}}</p>
+            <ul class="services two_up tiles">
+                <li>
+                    MongoDB
+                </li>
+                <li>
+                    Redis
+                </li>
+            </ul>
+            <ul class="icons">
+                <li class="click pause" title="Suspend All Services"
+                    ng-click="act('pause', server)">
+                    <i class="icon-pause"></i>
+                </li>
+                <li class="click resume" title="Resume All Services"
+                    ng-click="act('resume', server)">
+                    <i class="icon-play"></i>
+                </li>
+                <li class="right" title="Server Uptime" >
+                    <p>0h 12m</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="modal {{action.type ? 'active' : ''}}">
+        <div class="content">
+            <a ng-click="action.type = null" class="close">
+                <i class="icon-cancel"></i>
+            </a>
+            <div ng-switch="action.type">
+
+                <div ng-switch-when="pause">
+                    <h2 class="row">Suspend All Services</h2>
+                    <ul class="row">
+                        <p>Are you sure you want to suspend all services running on {{action.server}}?</p>
+                    </ul>
+                    <ul class="row">
+                        <div class="medium default btn" ng-click="action.type = null"><a>Cancel</a></div>
+                        <div class="medium primary btn" ng-click="action.type = null"><a>Suspend Services</a></div>
+                    </ul>
+                </div>
+
+                <div ng-switch-when="resume">
+                    <h2 class="row">Resume All Services</h2>
+                    <ul class="row">
+                        <p>Are you sure you want to resume all services running on {{action.server}}?</p>
+                    </ul>
+                    <ul class="row">
+                        <div class="medium default btn" ng-click="action.type = null"><a>Cancel</a></div>
+                        <div class="medium primary btn" ng-click="action.type = null"><a>Resume Services</a></div>
+                    </ul>
+                </div>
+
+                <div ng-switch-when="inspect">
+                    <h2 class="row">Server: {{action.server}}</h2>
+                </div>
+
+                <div ng-switch-when="add">
+                    <h2 class="row">Add Server</h2>
+                    <ul class="row">
+                        <li class="four columns field">
+                            <input class="input" type="text" placeholder="Hostname or IP Address" />
+                        </li>
+                        <li class="two columns field">
+                            <div class="medium primary btn"><a>Continue</a></div>
+                        </li>
+                    </ul>
+                    <h2 class="row">Discover Servers</h2>
+                    <p>Enter one or more IP ranges to auto-discover servers on the local network.</p>
+                    <ul class="row">
+                        <li class="four columns field">
+                            <input class="input" type="text" placeholder="IP Address Range"
+                            value="10.0.0-1.0-255, 192.168.0-1.0-255" />
+                        </li>
+                        <li class="two columns field">
+                            <div class="medium primary btn"><a>Scan IPs</a></div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
