@@ -17,5 +17,14 @@ setup(
     install_requires=['flask>=0.10', 'docker-py>=0.2.2'],
     long_description=read('README.md'),
     requires=['flask', 'docker'],
-    scripts=['bin/ddmi-server']
+    scripts=['bin/ddmi-server'],
+    package_data={
+        'ddmi': [
+            'static/gumby/fonts/*/*',
+            'static/gumby/css/gumby.css',
+            'static/angular.min.js',
+            'static/ddmi/*',
+            'templates/*'
+        ]
+    }
 )

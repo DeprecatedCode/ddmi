@@ -4,9 +4,10 @@
 VERSION = (0, 0, 1)
 
 import docker
-from flask import Flask
+from flask import Flask, send_file
 server = Flask(__name__)
 
 @server.route('/')
 def index():
-    return 'Hello World!'
+    return send_file('templates/app.html')
+
