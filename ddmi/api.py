@@ -79,5 +79,12 @@ class DDMI:
         server['containers'] = list(self.db['containers'].find(ddmi_id=server['ddmi_id']))
         return server
 
+    def add_container(self, ddmi_id, path):
+        server = self.db['servers'].find_one(ddmi_id=ddmi_id)
+        cid, log = self.docker.build(path=path)
+        container = {"cid": cid, "log": log, "ddmi_id": server['ddmi_id']}
+        self.db['containers'].insert(container)
+        return container
+
     def get_containers(self):
         return self.docker.containers()

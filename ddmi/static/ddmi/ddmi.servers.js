@@ -28,7 +28,8 @@ var servers = ddmi.controller('DDMIServersCtrl', function ($scope, $http, $inter
     var uptimeTimeout;
     var uptimeTimeoutIter;
     var loadServers = function () {
-        $http.get('/api/servers').success(function (data) {
+        $http.get('/api/servers')
+        .success(function (data) {
             $scope.servers = data.servers;
             uptimeTimeoutIter = 0;
             $interval.cancel(uptimeTimeout);
@@ -54,9 +55,13 @@ var servers = ddmi.controller('DDMIServersCtrl', function ($scope, $http, $inter
      */
     $scope.suspend = function (server) {
         $scope.action.processing = true;
-        $http.post('/api/server/' + server.ddmi_id + '/suspend').success(function () {
+        $http.post('/api/server/' + server.ddmi_id + '/suspend')
+        .success(function () {
             $scope.act();
             loadServers();
+        })
+        .error(function () {
+            err("An unknown error has occurred");
         });
     };
 
@@ -65,9 +70,13 @@ var servers = ddmi.controller('DDMIServersCtrl', function ($scope, $http, $inter
      */
     $scope.resume = function (server) {
         $scope.action.processing = true;
-        $http.post('/api/server/' + server.ddmi_id + '/resume').success(function () {
+        $http.post('/api/server/' + server.ddmi_id + '/resume')
+        .success(function () {
             $scope.act();
             loadServers();
+        })
+        .error(function () {
+            err("An unknown error has occurred");
         });
     };
 
@@ -78,6 +87,40 @@ var servers = ddmi.controller('DDMIServersCtrl', function ($scope, $http, $inter
         $scope.action.processing = false;
         $scope.action.type = type;
         $scope.action.server = server;
-    }
+    };
+
+    /**
+     * Action Error
+     */
+    var err = function (message) {
+        $scope.action.processing = false;
+        $scope.action.error = message;
+    };
+
+    /**
+     * Add Server
+     */
+    $scope.addServer = function(name) {
+
+    };
+
+    /**
+     * New Container
+     */
+    $scope.addContainer = function (server, path) {
+        if (!path || !path.length) {
+            return err("Please specify a path");
+        }
+        $scope.action.processing = true;
+        $http.post('/api/server/' + server.ddmi_id + '/containers', {path: path})
+        .success(function (data) {
+            $scope.act();
+            loadServers();
+            console.log(data);
+        })
+        .error(function () {
+            err("An unknown error has occurred");
+        });
+    };
 });
 

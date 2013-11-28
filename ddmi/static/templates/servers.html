@@ -27,6 +27,9 @@
                 <li ng-if="server.containers.length === 0" style="font-style: italic;">
                     No Services
                 </li>
+                <li ng-click="act('add-container', server)" class="click">
+                    <i class="icon-plus-squared"></i> Add Service
+                </li>
             </ul>
             <ul class="icons">
                 <li class="click pause" title="Suspend All Services"
@@ -82,6 +85,21 @@
                     <p class="row">IP Address: {{action.server.ip}}</h2>
                 </div>
 
+                <div ng-switch-when="add-container">
+                    <h2 class="row">Add Container</h2>
+                    <h3 class="row">To server: {{action.server.name}}</h3>
+                    <p class="row">DDMI Server ID: <code>{{action.server.ddmi_id}}</code></h2>
+                    <ul class="row">
+                        <li class="six columns field">
+                            <input class="input" type="text" placeholder="URL to Dockerfile" ng-model="path" />
+                        </li>
+                        <li class="four columns field">
+                            <div class="medium primary btn" ng-show="!action.processing" ng-click="addContainer(action.server, path)"><a>Add Container</a></div>
+                            <div class="medium primary btn" ng-show="action.processing"><a>Adding Container...</a></div>
+                        </li>
+                    </ul>
+                </div>
+
                 <div ng-switch-when="add">
                     <h2 class="row">Add Server</h2>
                     <ul class="row">
@@ -103,6 +121,10 @@
                             <div class="medium primary btn"><a>Scan IPs</a></div>
                         </li>
                     </ul>
+                </div>
+
+                <div ng-if="action.error" class="danger alert">
+                    <i class="icon-alert"></i> {{action.error}}
                 </div>
 
             </div>

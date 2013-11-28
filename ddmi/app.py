@@ -4,7 +4,7 @@
 VERSION = (0, 0, 1)
 
 import logging
-from flask import Flask, send_file, jsonify
+from flask import Flask, send_file, jsonify, request
 from api import DDMI
 
 # Flask Server
@@ -34,6 +34,10 @@ def api_server_suspend(ddmi_id):
 def api_server_resume(ddmi_id):
     api.resume(ddmi_id)
     return jsonify(ok=True)
+
+@server.route('/api/server/<ddmi_id>/containers', methods=["POST"])
+def api_server_add_container(ddmi_id):
+    return jsonify(container=api.add_container(ddmi_id, request.json['path']))
 
 def init():
     global api
