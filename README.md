@@ -39,4 +39,10 @@ Start the service with upstart:
 sudo service ddmi start
 ```
 
+Start the service in dev mode:
+
+```bash
+make dev
+```
+
 Finally, visit `http://<server-hostname-or-ip>:4244` in your browser.

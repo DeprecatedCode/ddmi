@@ -1,6 +1,11 @@
 import os
+import commands
 from setuptools import setup
 from ddmi.app import VERSION
+
+# Required directories
+commands.getoutput("mkdir -p /var/lib/ddmi")
+commands.getoutput("chmod 777 /var/lib/ddmi")
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()

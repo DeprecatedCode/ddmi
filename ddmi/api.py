@@ -30,7 +30,7 @@ class DDMI:
         # Save this instance if not found in database
         if not self.db['servers'].find_one(ddmi_id=self.ddmi_id):
             self.db['servers'].insert({
-                "ddmi_id": ddmi_id,
+                "ddmi_id": self.ddmi_id,
                 "name": self.domain,
                 "address": self.domain,
                 "ip": self.ipaddr(),

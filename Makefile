@@ -1,8 +1,6 @@
 .PHONY: install
 
 install:
-	sudo mkdir -p /var/lib/ddmi
-	sudo chmod 777 /var/lib/ddmi
 	sudo apt-get install -y python-pip
 	sudo pip install -r requirements.txt
 	sudo python setup.py install

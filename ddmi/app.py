@@ -7,9 +7,6 @@ import logging
 from flask import Flask, send_file, jsonify
 from api import DDMI
 
-api = DDMI()
-print "DDMI Server ID: " + api.ddmi_id
-
 # Flask Server
 server = Flask(__name__)
 ch = logging.StreamHandler()
@@ -38,6 +35,12 @@ def api_server_resume(ddmi_id):
     api.resume(ddmi_id)
     return jsonify(ok=True)
 
+def init():
+    global api
+    api = DDMI()
+    print "DDMI Server ID: " + api.ddmi_id
+
 if __name__ == '__main__':
     print "Starting DDMI in Development Mode"
+    init()
     server.run(host='0.0.0.0', port=4244, debug=True)
