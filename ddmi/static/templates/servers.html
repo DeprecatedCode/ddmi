@@ -6,9 +6,9 @@
         </span>
     </h3>
     <ul class="three_up tiles">
-        <li class="server {{['', 'active', 'paused', 'error', 'active'][server]}}" ng-repeat="server in servers">
+        <li class="server {{server.state}}" ng-repeat="server in servers">
             <ul class="icons">
-                <li class="status">
+                <li class="status" title="This server is {{server.state}}.">
                     <i class="icon-cloud-thunder"></i>
                 </li>
                 <li class="right click open" title="Server Details"
@@ -19,13 +19,13 @@
                     <i class="icon-flag"></i>
                 </li>
             </ul>
-            <p class="name">Server {{server}}</p>
+            <p class="name">{{server.name}}</p>
             <ul class="services two_up tiles">
-                <li>
-                    MongoDB
+                <li ng-repeat="container in server.containers">
+                    {{container}}
                 </li>
-                <li>
-                    Redis
+                <li ng-if="server.containers.length === 0" style="font-style: italic;">
+                    No Services
                 </li>
             </ul>
             <ul class="icons">
@@ -38,7 +38,7 @@
                     <i class="icon-play"></i>
                 </li>
                 <li class="right" title="Server Uptime" >
-                    <p>0h 12m</p>
+                    <p>{{fmtUptime(server.uptime)}}</p>
                 </li>
             </ul>
         </li>
@@ -54,47 +54,52 @@
                 <div ng-switch-when="pause">
                     <h2 class="row">Suspend All Services</h2>
                     <ul class="row">
-                        <p>Are you sure you want to suspend all services running on {{action.server}}?</p>
+                        <p>Are you sure you want to suspend all services running on {{action.server.name}}?</p>
                     </ul>
                     <ul class="row">
                         <div class="medium default btn" ng-click="action.type = null"><a>Cancel</a></div>
-                        <div class="medium primary btn" ng-click="action.type = null"><a>Suspend Services</a></div>
+                        <div class="medium primary btn" ng-show="!action.processing" ng-click="suspend(action.server)"><a>Suspend Services</a></div>
+                        <div class="medium primary btn" ng-show="action.processing"><a>Suspending Services...</a></div>
                     </ul>
                 </div>
 
                 <div ng-switch-when="resume">
                     <h2 class="row">Resume All Services</h2>
                     <ul class="row">
-                        <p>Are you sure you want to resume all services running on {{action.server}}?</p>
+                        <p>Are you sure you want to resume all services running on {{action.server.name}}?</p>
                     </ul>
                     <ul class="row">
                         <div class="medium default btn" ng-click="action.type = null"><a>Cancel</a></div>
-                        <div class="medium primary btn" ng-click="action.type = null"><a>Resume Services</a></div>
+                        <div class="medium primary btn" ng-show="!action.processing" ng-click="resume(action.server)"><a>Resume Services</a></div>
+                        <div class="medium primary btn" ng-show="action.processing"><a>Resuming Services...</a></div>
                     </ul>
                 </div>
 
                 <div ng-switch-when="inspect">
-                    <h2 class="row">Server: {{action.server}}</h2>
+                    <h2 class="row">{{action.server.name}}</h2>
+                    <p class="row">DDMI Server ID: <code>{{action.server.ddmi_id}}</code></h2>
+                    <p class="row">Uptime: {{fmtUptime(action.server.uptime)}}</h2>
+                    <p class="row">IP Address: {{action.server.ip}}</h2>
                 </div>
 
                 <div ng-switch-when="add">
                     <h2 class="row">Add Server</h2>
                     <ul class="row">
-                        <li class="four columns field">
+                        <li class="six columns field">
                             <input class="input" type="text" placeholder="Hostname or IP Address" />
                         </li>
-                        <li class="two columns field">
+                        <li class="four columns field">
                             <div class="medium primary btn"><a>Continue</a></div>
                         </li>
                     </ul>
                     <h2 class="row">Discover Servers</h2>
                     <p>Enter one or more IP ranges to auto-discover servers on the local network.</p>
                     <ul class="row">
-                        <li class="four columns field">
+                        <li class="six columns field">
                             <input class="input" type="text" placeholder="IP Address Range"
                             value="10.0.0-1.0-255, 192.168.0-1.0-255" />
                         </li>
-                        <li class="two columns field">
+                        <li class="four columns field">
                             <div class="medium primary btn"><a>Scan IPs</a></div>
                         </li>
                     </ul>

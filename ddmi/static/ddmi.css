@@ -121,11 +121,11 @@ code {
 }
 
 .server .icons li.resume,
-.server.paused .icons li.pause {
+.server.suspended .icons li.pause {
     display: none;
 }
 
-.server.paused .icons li.resume {
+.server.suspended .icons li.resume {
     display: inline-block;
 }
 
@@ -133,7 +133,7 @@ code {
     color: #ca3838;
 }
 
-.server.paused .status {
+.server.suspended .status {
     color: #f6b83f;
 }
 
