@@ -7,3 +7,6 @@ install:
 run:
 	sudo python setup.py install
 	ddmi-server
+
+dev:
+	python -m ddmi.app
