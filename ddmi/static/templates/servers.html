@@ -22,7 +22,7 @@
             <p class="name">{{server.name}}</p>
             <ul class="services two_up tiles">
                 <li ng-repeat="container in server.containers">
-                    {{container}}
+                    {{container.Command}}
                 </li>
                 <li ng-if="server.containers.length === 0" style="font-style: italic;">
                     No Services

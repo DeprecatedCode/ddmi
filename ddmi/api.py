@@ -72,6 +72,12 @@ class DDMI:
             "uptime": self.uptime()
         }
         self.db['servers'].update(data, ['ddmi_id'])
+        containers = self.get_containers()
+        for container in containers:
+            container['ddmi_id'] = self.ddmi_id
+            container['cid'] = container['Id']
+            del container['Id']
+            self.db['containers'].upsert(container, ['cid'])
 
     def prepare_server(self, server):
         if not server:
@@ -82,9 +88,7 @@ class DDMI:
     def add_container(self, ddmi_id, path):
         server = self.db['servers'].find_one(ddmi_id=ddmi_id)
         cid, log = self.docker.build(path=path)
-        container = {"cid": cid, "log": log, "ddmi_id": server['ddmi_id']}
-        self.db['containers'].insert(container)
-        return container
+        return True
 
     def get_containers(self):
-        return self.docker.containers()
+        return self.docker.containers(all=True)
